@@ -1,0 +1,46 @@
+body{
+  padding: 0px;
+  margin: 0px;
+}
+
+#topbar{
+  background-color: grey;
+  height: 50px;
+  padding: 10px;
+}
+  #topbar_left{
+    float: left;
+  }
+  #topbar_right{
+    float: right;
+    padding-right: 10px;
+  }
+
+#content{
+  padding: 30px;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+  .box{
+    float: left;
+    height: 360px;
+    width: 310px;
+    margin: 20px;
+    background-color: grey;
+  }
+    .textbox{
+      height: 50px;
+      width: 300px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 20px;
+    }
+    .imagebox{
+      height: 300px;
+      width: 300px;
+      margin: 5px;
+    }
+
+    #itemText{
+      margin: 40px;
+    }

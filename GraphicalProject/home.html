@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+
+  <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+
+  <div id="topbar">
+    <div id="topbar_right" onclick="changePage('/checkout.html')">
+      <img height="50px" src="images/cart.png">
+    </div>
+  </div>
+
+
+  <div id="content">
+
+    <div class="box" onclick="handleItemClick('apple')">
+      <div class="textbox">
+        Apple
+      </div>
+      <div class="imagebox">
+        <img height="300px" width="300px" src="images/img1.jpg">
+      </div>
+    </div>
+
+    <div class="box" onclick="handleItemClick('pear')">
+      <div class="textbox">
+        Pear
+      </div>
+      <div class="imagebox">
+        <img height="300px" width="300px" src="images/img2.jpg">
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
