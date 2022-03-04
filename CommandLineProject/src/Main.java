@@ -132,7 +132,7 @@ public class Main {
                 break;
         }
     }
-    
+
     private void checkOut(){
         System.out.print("\tName: ");
         String name = scanner.nextLine();
