@@ -106,3 +106,9 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# NODE 
+node_modules
+
+# VSCODE
+.vscode

@@ -34,7 +34,10 @@ function addToCart(product) {
 
   var i = product.slice();
 
-  if (oldStr.length = 0) {
+  console.log(i);
+
+
+  if ((oldStr === null) || (oldStr.length = 0)) {
     newStr = i;
   } else {
     newStr = oldStr.concat(",", i);
@@ -45,6 +48,6 @@ function addToCart(product) {
   handleSubmitItem();
 }
 
-function handleSubmitItem(){
+function handleSubmitItem() {
   document.getElementById("submitItem").innerHTML = "Added to the cart.";
 }
