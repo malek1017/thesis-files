@@ -12,12 +12,6 @@ data class Order(
     @ColumnInfo(name = "id")
     var id: Int? = null,
 
-    @ColumnInfo(name = "full_name")
-    var fullName: String = "",
-
-    @ColumnInfo(name = "address")
-    var address: String = "",
-
     @ColumnInfo(name = "product_id")
     var productId: Int = 0
 

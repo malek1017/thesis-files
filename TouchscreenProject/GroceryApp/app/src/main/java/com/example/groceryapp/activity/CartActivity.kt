@@ -1,7 +1,9 @@
 package com.example.groceryapp.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.groceryapp.R
@@ -32,7 +34,6 @@ class CartActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupActionBar()
-        getOrders()
     }
 
     private fun setupActionBar(){
@@ -42,6 +43,7 @@ class CartActivity : AppCompatActivity() {
 
     private fun getOrders(){
         CoroutineScope(IO).launch {
+            orders.clear()
             orders.addAll(databaseDao.getOrders())
             CoroutineScope(Main).launch {
                 initRecyclerView()
@@ -56,11 +58,24 @@ class CartActivity : AppCompatActivity() {
         binding.rvOrders.adapter = adapter
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.cart_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == android.R.id.home){
+        if(item.itemId == R.id.make_order){
+            startActivity(Intent(context, OrderActivity::class.java))
+        }
+        else if(item.itemId == android.R.id.home){
             finish()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getOrders()
     }
 
 }

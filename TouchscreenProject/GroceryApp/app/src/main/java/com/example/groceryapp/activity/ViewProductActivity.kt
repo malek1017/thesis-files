@@ -1,14 +1,16 @@
 package com.example.groceryapp.activity
 
-import android.annotation.SuppressLint
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.groceryapp.R
+import com.example.groceryapp.app.UtilFunctions
 import com.example.groceryapp.databinding.ActivityViewProductBinding
+import com.example.groceryapp.model.Order
 import com.example.groceryapp.model.Product
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ViewProductActivity : AppCompatActivity() {
 
@@ -40,9 +42,16 @@ class ViewProductActivity : AppCompatActivity() {
 
     private fun initListeners(){
         binding.btnAddToCart.setOnClickListener {
-            val intent = Intent(context, OrderActivity::class.java)
-            intent.putExtra("product", product)
-            startActivity(intent)
+            CoroutineScope(Dispatchers.IO).launch {
+
+                val order = Order(null, product.id?:0)
+                UtilFunctions.databaseDao.insertOrder(order)
+
+                CoroutineScope(Dispatchers.Main).launch {
+                    UtilFunctions.showToast(context, "Added to cart")
+                    finish()
+                }
+            }
         }
     }
 

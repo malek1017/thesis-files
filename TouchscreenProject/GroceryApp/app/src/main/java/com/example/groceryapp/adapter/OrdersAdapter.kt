@@ -42,9 +42,6 @@ class OrdersAdapter(var orderList: MutableList<Order>, private val interaction: 
 
             current.let {
 
-                binding.tvFullName.text = current.fullName
-                binding.tvAddress.text = current.address
-
                 CoroutineScope(IO).launch {
                     val product = databaseDao.getProductById(current.productId)
                     CoroutineScope(Main).launch {
@@ -52,6 +49,7 @@ class OrdersAdapter(var orderList: MutableList<Order>, private val interaction: 
                         binding.ivProductImg.setImageDrawable(ContextCompat.getDrawable(MyApplication.instance, product.image))
 
                         binding.tvTitle.text = product.title
+                        binding.tvDescription.text = product.description
                         binding.tvPrice.text = product.cost
                     }
                 }

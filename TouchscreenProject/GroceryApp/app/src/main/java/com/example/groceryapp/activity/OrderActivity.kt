@@ -1,8 +1,10 @@
 package com.example.groceryapp.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.Menu
 import android.view.MenuItem
 import com.example.groceryapp.R
 import com.example.groceryapp.app.UtilFunctions.Companion.databaseDao
@@ -22,15 +24,12 @@ class OrderActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityOrderBinding
 
-    private lateinit var product: Product
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupActionBar()
-        getIntentData()
         initListeners()
     }
 
@@ -39,17 +38,13 @@ class OrderActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    private fun getIntentData(){
-        product = intent.getSerializableExtra("product") as Product
-    }
 
     private fun initListeners(){
         binding.btnMakeOrder.setOnClickListener {
             if(validateForm()){
                 CoroutineScope(IO).launch {
 
-                    val order = Order(null, binding.etFullName.text.toString(), binding.etAddress.text.toString(), product.id?:0)
-                    databaseDao.insertOrder(order)
+                    databaseDao.deleteAllOrders()
 
                     CoroutineScope(Main).launch {
                         showToast(context, "Order submitted")
