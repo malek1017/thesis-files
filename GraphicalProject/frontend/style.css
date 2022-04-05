@@ -1,10 +1,11 @@
 body{
   padding: 0px;
   margin: 0px;
+  background-color: grey;
 }
 
 #topbar{
-  background-color: grey;
+  background-color: white;
   height: 50px;
   padding: 10px;
 }
@@ -20,13 +21,14 @@ body{
   padding: 30px;
   font-size: 20px;
   font-family: sans-serif;
+  background-color: grey;
 }
   .box{
     float: left;
     height: 360px;
     width: 310px;
     margin: 20px;
-    background-color: grey;
+    background-color: white;
   }
     .textbox{
       height: 50px;
@@ -43,4 +45,18 @@ body{
 
     #itemText{
       margin: 40px;
+      color:white;
+    }
+
+    #cartList{
+      float:left;
+      width: 50%;
+      color:white;
+      padding-left: 50px;
+      text-align: center;
+    }
+
+    #submitText{
+      width: 50%;
+      float: right;
     }
