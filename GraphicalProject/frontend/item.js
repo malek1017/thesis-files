@@ -11,6 +11,9 @@ var description = [
   ['peach', 'The peach probably originated in China and then spread westward through Asia to the Mediterranean countries and later to other parts of Europe. The Spanish explorers took the peach to the New World, and as early as 1600 the fruit was found in Mexico.'],
 ];
 
+var start = Date.now();
+
+
 window.addEventListener('load', (event) => {
   var product = localStorage.getItem("productName")
   setProduct(product);
@@ -38,6 +41,9 @@ function changePage(pageName) {
 
 function addToCart(product) {
 
+  var delta = Date.now() - start;
+  console.log("[ProductDesc: " + delta + "]");
+
   var oldStr = localStorage.getItem("productCart");
 
   var i = product.slice();
@@ -50,6 +56,8 @@ function addToCart(product) {
   } else {
     newStr = oldStr.concat(",", i);
   }
+
+  // newStr = "";
 
   localStorage.setItem("productCart", newStr);
 

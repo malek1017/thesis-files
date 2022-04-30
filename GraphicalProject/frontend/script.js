@@ -1,4 +1,9 @@
+var start = Date.now();
+
 function handleItemClick(product) {
+
+  var delta = Date.now() - start;
+  console.log("[ProductList: " + delta + "]");
 
   var item = product.slice();
 
