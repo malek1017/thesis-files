@@ -68,26 +68,44 @@ public class Main2 {
         System.out.print("----SAMPLE FIRST MENU----\n" +
                 "\t1) Exit\n" +
                 "\t2) List all products\n" +
-                ">");
+                "Press enter to write..");
 
         option = scanner.nextLine();
 
-        switch(option){
-            case "1" :
+        while(option!=null) {
+
+            if (option.isEmpty()) {
                 endTime = System.nanoTime();
                 duration = (endTime - start);
                 times.add("StartMenu: " + (duration/1000000));
-                exitProgram();
-                break;
-            case "2" :
-                endTime = System.nanoTime();
-                duration = (endTime - start);
-                times.add("StartMenu: " + (duration/1000000));
-                listProducts();
-                break;
-            default:
-                menu();
-                break;
+
+                start = System.nanoTime();
+                System.out.print(">");
+                option = scanner.nextLine();
+
+                switch(option){
+                    case "1" :
+                        endTime = System.nanoTime();
+                        duration = (endTime - start);
+                        times.add("StartMenu - writing: " + (duration/1000000));
+                        exitProgram();
+                        break;
+                    case "2" :
+                        endTime = System.nanoTime();
+                        duration = (endTime - start);
+                        times.add("StartMenu - writing: " + (duration/1000000));
+                        listProducts();
+                        break;
+                    default:
+                        menu();
+                        break;
+                }
+            }
+            if (scanner.hasNextLine()) {
+                option = scanner.nextLine();
+            } else {
+                option = null;
+            }
         }
     }
 
@@ -99,46 +117,65 @@ public class Main2 {
         for(int i=0; i<products.length; i++){
             System.out.println("\t"+ (i+4) + ") " + products[i][0]);
         }
-        System.out.print(">");
+        System.out.print("Press enter to write..");
 
         option = scanner.nextLine();
 
-        switch(option){
-            case "1" :
-                endTime = System.nanoTime();
-                duration = (endTime - start);
-                times.add("Products: " + (duration/1000000));
-                exitProgram();
-                break;
-            case "2" :
-                endTime = System.nanoTime();
-                duration = (endTime - start);
-                times.add("Products: " + (duration/1000000));
-                menu();
-                break;
-            case "3" :
-                endTime = System.nanoTime();
-                duration = (endTime - start);
-                times.add("Products: " + (duration/1000000));
-                viewCart();
-                break;
-            default:
-                int temp = ((Integer.valueOf(option))-4);
-                String temp2 = products[temp][0];
 
-                for(int i=0; i<products.length; i++){
-                    if(products[i][0].equals(temp2)) {
+        while(option!=null) {
 
+            if (option.isEmpty()) {
+                endTime = System.nanoTime();
+                duration = (endTime - start);
+                times.add("Products: " + (duration/1000000));
+
+                start = System.nanoTime();
+                System.out.print(">");
+                option = scanner.nextLine();
+
+                switch(option){
+                    case "1" :
                         endTime = System.nanoTime();
                         duration = (endTime - start);
-                        times.add("Products: " + (duration/1000000));
-
-                        seeProductDescription(temp2);
+                        times.add("Products - writing: " + (duration/1000000));
+                        exitProgram();
                         break;
-                    }
+                    case "2" :
+                        endTime = System.nanoTime();
+                        duration = (endTime - start);
+                        times.add("Products - writing: " + (duration/1000000));
+                        menu();
+                        break;
+                    case "3" :
+                        endTime = System.nanoTime();
+                        duration = (endTime - start);
+                        times.add("Products - writing: " + (duration/1000000));
+                        viewCart();
+                        break;
+                    default:
+                        int temp = ((Integer.valueOf(option))-4);
+                        String temp2 = products[temp][0];
+
+                        for(int i=0; i<products.length; i++){
+                            if(products[i][0].equals(temp2)) {
+
+                                endTime = System.nanoTime();
+                                duration = (endTime - start);
+                                times.add("Products - writing: " + (duration/1000000));
+
+                                seeProductDescription(temp2);
+                                break;
+                            }
+                        }
+                        listProducts();
+                        break;
                 }
-                listProducts();
-                break;
+            }
+            if (scanner.hasNextLine()) {
+                option = scanner.nextLine();
+            } else {
+                option = null;
+            }
         }
     }
 
@@ -154,34 +191,52 @@ public class Main2 {
                 System.out.println(products[i][1]);
             }
         }
-        System.out.print(">");
+        System.out.print("Press enter to write..");
 
         option = scanner.nextLine();
 
-        switch(option){
-            case "1" :
+        while(option!=null) {
+
+            if (option.isEmpty()) {
                 endTime = System.nanoTime();
                 duration = (endTime - start);
                 times.add("ProductDesc: " + (duration/1000000));
-                exitProgram();
-                break;
-            case "2" :
-                endTime = System.nanoTime();
-                duration = (endTime - start);
-                times.add("ProductDesc: " + (duration/1000000));
-                listProducts();
-                break;
-            case "3" :
-                endTime = System.nanoTime();
-                duration = (endTime - start);
-                times.add("ProductDesc: " + (duration/1000000));
-                System.out.println(product + " added to cart.");
-                addToCart(product);
-                listProducts();
-                break;
-            default:
-                seeProductDescription(product);
-                break;
+
+                start = System.nanoTime();
+                System.out.print(">");
+                option = scanner.nextLine();
+
+                switch(option){
+                    case "1" :
+                        endTime = System.nanoTime();
+                        duration = (endTime - start);
+                        times.add("ProductDesc - writing: " + (duration/1000000));
+                        exitProgram();
+                        break;
+                    case "2" :
+                        endTime = System.nanoTime();
+                        duration = (endTime - start);
+                        times.add("ProductDesc - writing: " + (duration/1000000));
+                        listProducts();
+                        break;
+                    case "3" :
+                        endTime = System.nanoTime();
+                        duration = (endTime - start);
+                        times.add("ProductDesc - writing: " + (duration/1000000));
+                        System.out.println(product + " added to cart.");
+                        addToCart(product);
+                        listProducts();
+                        break;
+                    default:
+                        seeProductDescription(product);
+                        break;
+                }
+            }
+            if (scanner.hasNextLine()) {
+                option = scanner.nextLine();
+            } else {
+                option = null;
+            }
         }
     }
 
@@ -202,32 +257,50 @@ public class Main2 {
             System.out.println("\t- " + cart.get(i));
         }
 
-        System.out.print(">");
+        System.out.print("Press enter to write..");
         option = scanner.nextLine();
 
 
-        switch(option){
-            case "1" :
+        while(option!=null) {
+
+            if (option.isEmpty()) {
                 endTime = System.nanoTime();
                 duration = (endTime - start);
                 times.add("viewCart: " + (duration/1000000));
-                exitProgram();
-                break;
-            case "2" :
-                endTime = System.nanoTime();
-                duration = (endTime - start);
-                times.add("viewCart: " + (duration/1000000));
-                listProducts();
-                break;
-            case "3" :
-                endTime = System.nanoTime();
-                duration = (endTime - start);
-                times.add("viewCart: " + (duration/1000000));
-                checkOut();
-                break;
-            default:
-                viewCart();
-                break;
+
+                start = System.nanoTime();
+                System.out.print(">");
+                option = scanner.nextLine();
+
+                switch(option){
+                    case "1" :
+                        endTime = System.nanoTime();
+                        duration = (endTime - start);
+                        times.add("viewCart - writing: " + (duration/1000000));
+                        exitProgram();
+                        break;
+                    case "2" :
+                        endTime = System.nanoTime();
+                        duration = (endTime - start);
+                        times.add("viewCart - writing: " + (duration/1000000));
+                        listProducts();
+                        break;
+                    case "3" :
+                        endTime = System.nanoTime();
+                        duration = (endTime - start);
+                        times.add("viewCart - writing: " + (duration/1000000));
+                        checkOut();
+                        break;
+                    default:
+                        viewCart();
+                        break;
+                }
+            }
+            if (scanner.hasNextLine()) {
+                option = scanner.nextLine();
+            } else {
+                option = null;
+            }
         }
     }
 
@@ -240,22 +313,41 @@ public class Main2 {
         System.out.print("\tAddress: ");
         String address = scanner.nextLine();
 
-        System.out.print("Continue?\n\t1) Exit\n\t2) Yes\n\t3) No\n>");
+        System.out.print("Continue?\n\t1) Exit\n\t2) Yes\n\t3) No\nPress enter to write..");
         String option = scanner.nextLine();
-        switch(option) {
-            case "1":
-                exitProgram();
-                break;
-            case "2":
+
+        while(option!=null) {
+
+            if (option.isEmpty()) {
                 endTime = System.nanoTime();
                 duration = (endTime - start);
                 times.add("Checkout: " + (duration/1000000));
-                System.out.println("Thank you.\n"+ name +", " + address);
-                exitProgram();
-                break;
-            default:
-                viewCart();
-                break;
+
+                start = System.nanoTime();
+                System.out.print(">");
+                option = scanner.nextLine();
+
+                switch(option) {
+                    case "1":
+                        exitProgram();
+                        break;
+                    case "2":
+                        endTime = System.nanoTime();
+                        duration = (endTime - start);
+                        times.add("Checkout - writing: " + (duration/1000000));
+                        System.out.println("Thank you.\n"+ name +", " + address);
+                        exitProgram();
+                        break;
+                    default:
+                        viewCart();
+                        break;
+                }
+            }
+            if (scanner.hasNextLine()) {
+                option = scanner.nextLine();
+            } else {
+                option = null;
+            }
         }
     }
 
