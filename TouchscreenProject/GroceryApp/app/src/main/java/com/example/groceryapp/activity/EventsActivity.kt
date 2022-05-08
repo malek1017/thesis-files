@@ -55,7 +55,8 @@ fun List<Event>.toCsvLikeString(): String {
         appendLine("Start of CSV:")
         appendLine("ID,EventName,ExtraInformation,CreatedAt")
         eventsList.forEachIndexed { index, event ->
-            append("${event.id},${event.eventName},${event.extraInformation},${event.createdAt}")
+            val extraInformationWithoutCommas = event.extraInformation?.replace(",", " ")
+            append("${event.id},${event.eventName},$extraInformationWithoutCommas,${event.createdAt}")
             if (index != eventsList.lastIndex) {
                 appendLine()
             }
