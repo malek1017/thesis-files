@@ -36,6 +36,11 @@ android {
 
     buildFeatures {
         viewBinding true
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.1.1'
     }
 }
 
@@ -57,12 +62,23 @@ dependencies {
     implementation "androidx.room:room-ktx:$room"
 
     // Coroutines
-    def coroutines = "1.6.0"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+    def coroutines_version = "1.6.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
     // Enables the use of java.time.Instant on APIs lower than 26
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+
+    // Compose
+    // Integration with activities
+    implementation 'androidx.activity:activity-compose:1.4.0'
+    def compose_version = "1.1.1"
+    // Compose Material Design
+    implementation "androidx.compose.material:material:$compose_version"
+    // Tooling support (Previews, etc.)
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    // When using a MDC theme
+    implementation "com.google.android.material:compose-theme-adapter:1.1.7"
 }

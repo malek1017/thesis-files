@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import com.example.groceryapp.model.Event
 import com.example.groceryapp.model.EventNameExtraInformationAndTimestamp
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface EventDao {
@@ -17,6 +18,9 @@ interface EventDao {
 
     @Query("""SELECT * FROM events""")
     suspend fun getAllEvents(): List<Event>
+
+    @Query("""SELECT * FROM events""")
+    fun getAllEventsFlow(): Flow<List<Event>>
 
     @Query(
         """
