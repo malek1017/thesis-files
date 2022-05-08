@@ -70,7 +70,7 @@ public class Main {
 
     private void menu(){
         start = System.nanoTime();
-        System.out.print("----SAMPLE FIRST MENU----\n" +
+        System.out.print("----FIRST MENU----\n" +
                 "\tExit\n" +
                 "\tList all products\n" +
                 "Press enter to write..");
