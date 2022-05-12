@@ -1,17 +1,24 @@
 {
   "name": "graphicalproject",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/szomer/thesisFiles.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/szomer/thesisFiles/issues"
+  },
+  "homepage": "https://github.com/szomer/thesisFiles#readme",
   "dependencies": {
-    "express": "^4.17.3",
-    "os-utils": "^0.0.14",
-    "webgazer": "^3.0.0"
-  }
+    "express": "^4.17.3"
+  },
+  "devDependencies": {},
+  "description": ""
 }
