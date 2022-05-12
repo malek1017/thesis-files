@@ -25,8 +25,6 @@ app.all('*', (req, res) => {
 });
 
 
-
-
 // console.log(os.cpus());
 // console.log(os.totalmem());
 // console.log(os.freemem())
