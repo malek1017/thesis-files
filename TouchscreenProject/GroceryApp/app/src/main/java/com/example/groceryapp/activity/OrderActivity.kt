@@ -1,28 +1,26 @@
 package com.example.groceryapp.activity
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.example.groceryapp.R
-import com.example.groceryapp.app.UtilFunctions.Companion.databaseDao
-import com.example.groceryapp.app.UtilFunctions.Companion.showToast
+import com.example.groceryapp.app.MyApplication
+import com.example.groceryapp.app.showToast
 import com.example.groceryapp.databinding.ActivityOrderBinding
-import com.example.groceryapp.databinding.ActivityViewProductBinding
-import com.example.groceryapp.model.Order
-import com.example.groceryapp.model.Product
+import com.example.groceryapp.model.Events
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class OrderActivity : AppCompatActivity() {
 
-    private val context = this@OrderActivity
-
     private lateinit var binding: ActivityOrderBinding
+    private val appContainer by lazy {
+        (applicationContext as MyApplication).appContainer
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,21 +31,24 @@ class OrderActivity : AppCompatActivity() {
         initListeners()
     }
 
-    private fun setupActionBar(){
+    private fun setupActionBar() {
         supportActionBar?.title = "Make Order"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-
-    private fun initListeners(){
+    private fun initListeners() {
         binding.btnMakeOrder.setOnClickListener {
-            if(validateForm()){
+            if (validateForm()) {
+                val fullName = binding.etFullName.text.toString()
+                val address = binding.etAddress.text.toString()
                 CoroutineScope(IO).launch {
-
-                    databaseDao.deleteAllOrders()
-
-                    CoroutineScope(Main).launch {
-                        showToast(context, "Order submitted")
+                    appContainer.orderDao.deleteAllOrders()
+                    appContainer.eventDao.insertEvent(
+                        eventName = Events.ORDER_SUBMITTED,
+                        extraInformation = (fullName to address).toString()
+                    )
+                    withContext(Main) {
+                        this@OrderActivity.showToast("Order submitted")
                         finish()
                     }
                 }
@@ -78,7 +79,7 @@ class OrderActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == android.R.id.home){
+        if (item.itemId == android.R.id.home) {
             finish()
         }
         return super.onOptionsItemSelected(item)

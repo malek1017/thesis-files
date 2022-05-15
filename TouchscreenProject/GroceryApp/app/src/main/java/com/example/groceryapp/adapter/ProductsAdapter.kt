@@ -25,7 +25,6 @@ class ProductsAdapter(var productList: MutableList<Product>, private val interac
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val current = productList[position]
         holder.setData(current, position)
-
     }
 
     override fun getItemCount(): Int = productList.size
@@ -35,19 +34,17 @@ class ProductsAdapter(var productList: MutableList<Product>, private val interac
         private val interaction: Interaction?
     ) : RecyclerView.ViewHolder(binding.root) {
 
-
         fun setData(current: Product, position: Int) {
+            binding.ivProductImg.setImageDrawable(
+                ContextCompat.getDrawable(binding.root.context, current.image)
+            )
 
-            current.let {
-                binding.ivProductImg.setImageDrawable(ContextCompat.getDrawable(MyApplication.instance, current.image))
+            binding.tvTitle.text = current.title
+            binding.tvDescription.text = current.description
+            binding.tvPrice.text = current.cost
 
-                binding.tvTitle.text = current.title
-                binding.tvDescription.text = current.description
-                binding.tvPrice.text = current.cost
-
-                binding.root.setOnClickListener {
-                    interaction?.onItemSelected(position, current)
-                }
+            binding.root.setOnClickListener {
+                interaction?.onItemSelected(position, current)
             }
         }
     }

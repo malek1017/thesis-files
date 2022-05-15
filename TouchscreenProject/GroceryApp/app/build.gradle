@@ -24,6 +24,9 @@ android {
         }
     }
     compileOptions {
+        // Enables the use of java.time.Instant on APIs lower than 26
+        coreLibraryDesugaringEnabled true
+
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -60,4 +63,6 @@ dependencies {
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
+    // Enables the use of java.time.Instant on APIs lower than 26
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 }
