@@ -45,7 +45,7 @@ class OrderActivity : AppCompatActivity() {
                     appContainer.orderDao.deleteAllOrders()
                     appContainer.eventDao.insertEvent(
                         eventName = Events.ORDER_SUBMITTED,
-                        extraInformation = (fullName to address).toString()
+                        extraInformation = "FullName:$fullName Address:$address"
                     )
                     withContext(Main) {
                         this@OrderActivity.showToast("Order submitted")

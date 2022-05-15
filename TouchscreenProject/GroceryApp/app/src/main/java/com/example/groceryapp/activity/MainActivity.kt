@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), ProductsAdapter.Interaction {
         binding.rvProducts.adapter = adapter
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -54,6 +54,8 @@ class MainActivity : AppCompatActivity(), ProductsAdapter.Interaction {
 
         if (item.itemId == R.id.cart) {
             startActivity(Intent(this@MainActivity, CartActivity::class.java))
+        } else if (item.itemId == R.id.show_events) {
+            startActivity(Intent(this, EventsActivity::class.java))
         }
 
         return super.onOptionsItemSelected(item)

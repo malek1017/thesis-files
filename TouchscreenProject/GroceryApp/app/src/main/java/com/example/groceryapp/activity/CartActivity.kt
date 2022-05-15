@@ -56,7 +56,7 @@ class CartActivity : AppCompatActivity() {
         binding.rvOrders.adapter = adapter
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.cart_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }

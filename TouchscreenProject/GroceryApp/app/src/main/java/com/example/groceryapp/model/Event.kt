@@ -8,7 +8,7 @@ import java.time.Instant
 @Entity(tableName = "events")
 data class Event(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Long,
     @ColumnInfo(name = "event_name")
     val eventName: String,
     @ColumnInfo(name = "extra_information")
